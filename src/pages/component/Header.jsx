@@ -26,7 +26,7 @@ export default function Header() {
             <li
               onClick={() => navigate("/")}
               className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-transparent ${
-                pathMathRoute("/") && "text-current	  border-b-red-500"
+                pathMathRoute("/") && "text-black	  border-b-red-500"
               }`}
             >
               Home
@@ -34,7 +34,7 @@ export default function Header() {
             <li
               onClick={() => navigate("/offers")}
               className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-transparent ${
-                pathMathRoute("/offers") && "text-current	  border-b-red-500"
+                pathMathRoute("/offers") && "text-black  border-b-red-500"
               }`}
             >
               Offers
@@ -42,7 +42,7 @@ export default function Header() {
             <li
               onClick={() => navigate("/sign-in")}
               className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-transparent ${
-                pathMathRoute("/sign-in") && "text-current	  border-b-red-500"
+                pathMathRoute("/sign-in") && "text-black	  border-b-red-500"
               }`}
             >
               Sign in
