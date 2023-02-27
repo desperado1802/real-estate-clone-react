@@ -11,7 +11,7 @@ import { getAuth } from "firebase/auth";
 import { v4 as uuidv4 } from "uuid";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateListing() {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function CreateListing() {
     furnished: false,
     address: "",
     description: "",
-    offer: true,
+    offer: false,
     regularPrice: 0,
     discountedPrice: 0,
     latitude: 0,
@@ -89,9 +89,8 @@ export default function CreateListing() {
       return;
     }
     let geolocation = {};
-    let location;
+
     if (geoLocationEnabled) {
-      let key = "9e4908e1b17cf0cc10f8cd47898c20d5";
       const response = await fetch(
         `http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_GEOCODE_API_KEY}&query=${address}`
       );
@@ -99,7 +98,7 @@ export default function CreateListing() {
       console.log(data);
       geolocation.latitude = data.data[0]?.latitude ?? 0;
       geolocation.longitude = data.data[0]?.longitude ?? 0;
-      console.log(geolocation);
+
       //   location = data.data === [] && undefined;
 
       if (!data.data[0]) {
@@ -164,9 +163,9 @@ export default function CreateListing() {
       userRef: auth.currentUser.uid,
     };
     delete formDataCopy.images;
+    !formDataCopy.offer && delete formDataCopy.discountedPrice;
     delete formDataCopy.latitude;
     delete formDataCopy.longitude;
-    !formDataCopy.offer && delete formDataCopy.discountedPrice;
     const docRef = await addDoc(collection(db, "listings"), formDataCopy);
     setLoading(false);
     toast.success("Listing created");
