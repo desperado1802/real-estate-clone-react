@@ -83,7 +83,7 @@ export default function Listing() {
         </p>
       )}
       <div className="m-4 flex flex-col md:flex-row max-w-6xl lg:mx-auto p-4 rounded-lg shadow-lg bg-white lg:space-x-5">
-        <div className=" w-full h-[200px] lg:h-[400px]">
+        <div className=" w-full h-min-[200px] lg:min-h-[400px]">
           <p className="text-2xl font-bold mb-3 text-blue-900">
             {listing.name} - $
             {listing.offer
