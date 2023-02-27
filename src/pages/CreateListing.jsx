@@ -27,7 +27,7 @@ export default function CreateListing() {
     furnished: false,
     address: "",
     description: "",
-    offer: false,
+    offer: true,
     regularPrice: 0,
     discountedPrice: 0,
     latitude: 0,
