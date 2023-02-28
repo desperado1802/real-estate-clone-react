@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import { db } from "../firebase";
 import { FcHome } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import ListingItem from "./component/ListingItem";
+import ListingItem from "../component/ListingItem";
 
 export default function Profile() {
   const auth = getAuth();
