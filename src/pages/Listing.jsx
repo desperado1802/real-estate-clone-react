@@ -171,9 +171,7 @@ export default function Listing() {
                 listing.geolocation.longitude,
               ]}
             >
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
+              <Popup>{listing.address}</Popup>
             </Marker>
           </MapContainer>
         </div>
