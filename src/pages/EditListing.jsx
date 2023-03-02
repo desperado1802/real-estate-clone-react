@@ -125,25 +125,31 @@ export default function EditListing() {
     }
     let geolocation = {};
 
-    if (geoLocationEnabled) {
-      const response = await fetch(
-        `http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_GEOCODE_API_KEY}&query=${address}`
-      );
-      const data = await response.json();
-      console.log(data);
-      geolocation.latitude = data.data[0]?.latitude ?? 0;
-      geolocation.longitude = data.data[0]?.longitude ?? 0;
+    const addressCopyUriEncoded = encodeURIComponent(address);
+    const response = await fetch(
+      `https://api.opencagedata.com/geocode/v1/json?q=${addressCopyUriEncoded}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
+    );
 
-      //   location = data.data === [] && undefined;
+    // if (geoLocationEnabled) {
+    //   const response = await fetch(
+    //     `http://api.positionstack.com/v1/forward?access_key=${process.env.REACT_APP_GEOCODE_API_KEY}&query=${address}`
+    //   );
+    const data = await response.json();
+    console.log(data);
 
-      if (!data.data[0]) {
-        setLoading(false);
-        toast.error("Please enter a valid address");
-        return;
-      }
+    //   location = data.data === [] && undefined;
+
+    if (data === undefined) {
+      setLoading(false);
+      toast.error("Please enter a valid address");
+      return;
     } else {
-      geolocation.latitude = latitude;
-      geolocation.longitude = longitude;
+      geolocation.latitude = data.results[0].geometry.lat ?? 0;
+      geolocation.longitude = data.results[0].geometry.lng ?? 0;
+      console.log(
+        (geolocation.latitude = data.results[0].geometry.lat),
+        data.results[0].geometry.lng
+      );
     }
 
     async function storeImage(image) {

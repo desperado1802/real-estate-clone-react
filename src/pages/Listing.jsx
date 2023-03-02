@@ -61,7 +61,7 @@ export default function Listing() {
         {listing.imgUrls.map((url, index) => (
           <SwiperSlide key={index}>
             <div
-              className="relative w-full overflow-hidden h-[300px] 2xl:h-[450px]"
+              className="relative w-full overflow-hidden h-[400px] 2xl:h-[600px]"
               style={{
                 background: `url(${listing.imgUrls[index]}) center no-repeat`,
                 backgroundSize: "cover",
@@ -92,7 +92,7 @@ export default function Listing() {
           <p className="text-2xl font-bold mb-3 text-blue-900">
             {listing.name} - $
             {listing.offer
-              ? listing.discounterPrice
+              ? listing.discountedPrice
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
               : listing.regularPrice
@@ -111,12 +111,12 @@ export default function Listing() {
 
             {listing.offer && (
               <p className="w-full max-w-[200px] bg-green-800 rounded-m p-1 text-white text-center font-semibold shadow-md">
-                ${+listing.regularPrice - +listing.discounterPrice} discount
+                ${+listing.regularPrice - +listing.discountedPrice} discount
               </p>
             )}
           </div>
           <p className="mt-3 mb-3 ">
-            <span className="font-semibold ">Description:</span>
+            <span className="font-semibold ">Description: </span>
             {listing.description}
           </p>
           <ul className="flex items-center space-x-2 lg:space-x-10 font-semibold mb-6">
