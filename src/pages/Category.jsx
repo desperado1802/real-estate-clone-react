@@ -43,7 +43,7 @@ export default function Category() {
         setListings(listings);
         setLoading(false);
       } catch (error) {
-        toast.error("Could not fetch listing");
+        toast.error("Couldn't fetch listing");
         console.log(error);
       }
     }
